@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:swipest_registration/text_field.dart';
 import 'package:email_validator/email_validator.dart';
+
+import 'text_field.dart';
 
 class Landing extends StatefulWidget {
   const Landing({Key? key}) : super(key: key);

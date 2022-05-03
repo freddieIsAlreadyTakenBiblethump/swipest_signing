@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:swipest_registration/landing.dart';
+
+import 'landing.dart';
 
 void main() {
   runApp(const MyApp());
