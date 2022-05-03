@@ -14,9 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'swipest_signing',
-      home: Scaffold(
-        body: Landing(),
-      ),
+      home: Landing(),
     );
   }
 }

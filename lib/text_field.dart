@@ -39,19 +39,13 @@ class _SwipestTextFormFieldState extends State<SwipestTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      obscureText: _obscure,
-      // from above constructor
-      key: widget.widgetKey,
-      // from above constructor
-      controller: widget.textEditingController,
-      // from above constructor
-      validator: widget.validator,
-      // from above constructor
-      onEditingComplete: widget.onEditingComplete,
-      // from above constructor
+      obscureText: _obscure, // from above constructor
+      key: widget.widgetKey, // from above constructor
+      controller: widget.textEditingController, // from above constructor
+      validator: widget.validator, // from above constructor
+      onEditingComplete: widget.onEditingComplete, // from above constructor
       decoration: InputDecoration(
-        labelText: widget.text,
-        // from above constructor
+        labelText: widget.text, // from above constructor
         labelStyle: const TextStyle(
           fontWeight: FontWeight.w600,
           letterSpacing: 1.5,
