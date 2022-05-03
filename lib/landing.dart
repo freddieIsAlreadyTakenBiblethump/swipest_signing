@@ -38,6 +38,7 @@ class _LandingState extends State<Landing> {
             return null;
           },
           onEditingComplete: () => _emailKey.currentState!.validate(),
+          obscure: false,
         ),
         SwipestTextFormField(
           widgetKey: _passwordKey,
@@ -52,6 +53,7 @@ class _LandingState extends State<Landing> {
             }
           },
           onEditingComplete: () => _passwordKey.currentState!.validate(),
+          obscure: true,
         ),
         const Spacer(),
         SizedBox(

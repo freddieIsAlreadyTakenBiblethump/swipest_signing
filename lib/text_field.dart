@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class SwipestTextFormField extends StatefulWidget {
-
   String text;
   TextEditingController? textEditingController;
   FormFieldValidator<String>? validator;
   Function()? onEditingComplete;
   Key? widgetKey;
+  bool obscure;
 
   SwipestTextFormField({
     this.text = '',
@@ -14,6 +14,7 @@ class SwipestTextFormField extends StatefulWidget {
     this.validator,
     this.onEditingComplete,
     this.widgetKey,
+    required this.obscure,
   });
 
   @override
@@ -21,6 +22,13 @@ class SwipestTextFormField extends StatefulWidget {
 }
 
 class _SwipestTextFormFieldState extends State<SwipestTextFormField> {
+  late bool _obscure;
+
+  @override
+  void initState() {
+    _obscure = widget.obscure;
+    super.initState();
+  }
 
   final _border = const UnderlineInputBorder(
       borderSide: BorderSide(
@@ -31,12 +39,19 @@ class _SwipestTextFormFieldState extends State<SwipestTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: _obscure,
+      // from above constructor
       key: widget.widgetKey,
-      controller: widget.textEditingController, // from above constructor
-      validator: widget.validator, // from above constructor
-      onEditingComplete: widget.onEditingComplete, // from above constructor
+      // from above constructor
+      controller: widget.textEditingController,
+      // from above constructor
+      validator: widget.validator,
+      // from above constructor
+      onEditingComplete: widget.onEditingComplete,
+      // from above constructor
       decoration: InputDecoration(
-        labelText: widget.text, // from above constructor
+        labelText: widget.text,
+        // from above constructor
         labelStyle: const TextStyle(
           fontWeight: FontWeight.w600,
           letterSpacing: 1.5,
@@ -51,6 +66,22 @@ class _SwipestTextFormFieldState extends State<SwipestTextFormField> {
         focusedBorder: _border,
         focusedErrorBorder: _border,
         errorStyle: const TextStyle(fontSize: 10),
+        suffix: widget.obscure
+            ? GestureDetector(
+                child: Text(
+                  _obscure ? 'pokaż' : 'ukryj',
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colors.black26,
+                  ),
+                ),
+                onTap: () {
+                  setState(() {
+                    _obscure = !_obscure;
+                  });
+                },
+              )
+            : null,
       ),
       style: const TextStyle(
         fontSize: 14,
