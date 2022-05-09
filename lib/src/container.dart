@@ -17,12 +17,6 @@ class _ContainerState extends State<Container> {
 
   Widget? _content;
 
-  _setContent(Widget content) {
-    setState(() {
-      _content = content;
-    });
-  }
-
   Widget _placeContent() {
     if (_content == null) {
       return flutter.Container();
@@ -33,6 +27,14 @@ class _ContainerState extends State<Container> {
 
   @override
   Widget build(BuildContext context) {
+
+    _setContent(Widget content) {
+      setState(() {
+        _content = content;
+      });
+    }
+    widget.controller.setContent = _setContent;
+
     return Scaffold(
       body: _placeContent(),
     );

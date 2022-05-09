@@ -5,14 +5,14 @@ import 'package:email_validator/email_validator.dart';
 
 import '../util/text_field.dart';
 
-class Landing extends StatefulWidget {
-  const Landing({Key? key}) : super(key: key);
+class SignIn extends StatefulWidget {
+  const SignIn({Key? key}) : super(key: key);
 
   @override
-  State<Landing> createState() => _LandingState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _LandingState extends State<Landing> {
+class _SignInState extends State<SignIn> {
 
   final _formKey = GlobalKey<FormState>();
   final _emailKey = GlobalKey<FormFieldState>();
