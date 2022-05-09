@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:email_validator/email_validator.dart';
 
-import 'text_field.dart';
+import '../util/text_field.dart';
 
 class Landing extends StatefulWidget {
   const Landing({Key? key}) : super(key: key);
@@ -13,6 +13,7 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> {
+
   final _formKey = GlobalKey<FormState>();
   final _emailKey = GlobalKey<FormFieldState>();
   final _passwordKey = GlobalKey<FormFieldState>();
