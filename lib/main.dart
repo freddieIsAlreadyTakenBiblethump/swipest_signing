@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart' as flutter;
 import 'package:swipest_signing/src/container.dart';
-import 'package:swipest_signing/src/container_controller.dart';
+import 'package:swipest_signing/src/controller.dart';
 
 void main() {
   flutter.runApp(const MyApp());

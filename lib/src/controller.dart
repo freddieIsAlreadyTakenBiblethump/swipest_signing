@@ -14,7 +14,7 @@ class Controller {
   final Map<SigningPhase, Widget> _phases = {};
 
   Controller() {
-    _phases[SigningPhase.signIn] = const SignIn();
+    _phases[SigningPhase.signIn] = SignIn(this);
     _phases[SigningPhase.first] = const First();
     _phases[SigningPhase.second] = const Second();
     _phases[SigningPhase.third] = const Third();
@@ -29,6 +29,8 @@ class Controller {
   show(SigningPhase phase) {
     _setContent!(_phases[phase]!);
   }
+
+  get setContent => _setContent;
 }
 
 enum SigningPhase {

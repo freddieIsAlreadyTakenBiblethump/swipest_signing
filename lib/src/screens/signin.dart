@@ -2,11 +2,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:swipest_signing/src/controller.dart';
 
+import '../controller.dart';
 import '../util/text_field.dart';
 
 class SignIn extends StatefulWidget {
-  const SignIn({Key? key}) : super(key: key);
+
+  final Controller controller;
+
+  const SignIn(this.controller, {Key? key}) : super(key: key);
 
   @override
   State<SignIn> createState() => _SignInState();
