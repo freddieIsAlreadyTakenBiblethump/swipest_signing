@@ -16,14 +16,7 @@ class Container extends StatefulWidget {
 class _ContainerState extends State<Container> {
 
   Widget? _content;
-
-  Widget _placeContent() {
-    if (_content == null) {
-      return flutter.Container();
-    } else {
-      return _content!;
-    }
-  }
+  bool firstExecution = true;
 
   @override
   Widget build(BuildContext context) {
@@ -33,10 +26,23 @@ class _ContainerState extends State<Container> {
         _content = content;
       });
     }
-    widget.controller.setContent = _setContent;
+    widget.controller.setContentSetter(_setContent);
+
+    if (firstExecution) {
+      widget.controller.show(SigningPhase.signIn);
+      firstExecution = false;
+    }
 
     return Scaffold(
       body: _placeContent(),
     );
+  }
+
+  Widget _placeContent() {
+    if (_content == null) {
+      return flutter.Container();
+    } else {
+      return _content!;
+    }
   }
 }

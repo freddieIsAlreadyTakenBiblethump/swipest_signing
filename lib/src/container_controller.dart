@@ -9,22 +9,28 @@ import 'screens/third.dart';
 
 class Controller {
 
-  Function(Widget widget)? setContent;
+  Function(Widget widget)? _setContent;
 
-  late final SignIn _signIn;
-  final Map<RegistrationStep, Widget> _registrationScreens = {};
+  final Map<SigningPhase, Widget> _phases = {};
 
   Controller() {
-    _registrationScreens[RegistrationStep.first] = const First();
-    _registrationScreens[RegistrationStep.second] = const Second();
-    _registrationScreens[RegistrationStep.third] = const Third();
-    _registrationScreens[RegistrationStep.fourth] = const Fourth();
-    _registrationScreens[RegistrationStep.fifth] = const Fifth();
+    _phases[SigningPhase.signIn] = const SignIn();
+    _phases[SigningPhase.first] = const First();
+    _phases[SigningPhase.second] = const Second();
+    _phases[SigningPhase.third] = const Third();
+    _phases[SigningPhase.fourth] = const Fourth();
+    _phases[SigningPhase.fifth] = const Fifth();
   }
 
+  setContentSetter(Function(Widget widget) setContent) {
+    _setContent = setContent;
+  }
 
+  show(SigningPhase phase) {
+    _setContent!(_phases[phase]!);
+  }
 }
 
-enum RegistrationStep {
-  first, second, third, fourth, fifth, sixth, seventh, eight, ninth
+enum SigningPhase {
+  signIn, first, second, third, fourth, fifth, sixth
 }

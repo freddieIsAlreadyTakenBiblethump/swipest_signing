@@ -1,20 +1,19 @@
-import 'package:flutter/material.dart';
-
-import 'src/screens/signin.dart';
+import 'package:flutter/material.dart' as flutter;
+import 'package:swipest_signing/src/container.dart';
+import 'package:swipest_signing/src/container_controller.dart';
 
 void main() {
-  runApp(const MyApp());
+  flutter.runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MyApp extends flutter.StatelessWidget {
+  const MyApp({flutter.Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
+  flutter.Widget build(flutter.BuildContext context) {
+    return flutter.MaterialApp(
       title: 'swipest_signing',
-      home: SignIn(),
+      home: Container(Controller()),
     );
   }
 }
