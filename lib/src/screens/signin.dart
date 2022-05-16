@@ -68,7 +68,10 @@ class _SignInState extends State<SignIn> {
       child: const Text(
         'Zaloguj',
         style: TextStyle(
-            color: Colors.white, fontWeight: FontWeight.w500, fontSize: 14),
+          color: Colors.white,
+          fontWeight: FontWeight.w500,
+          fontSize: 14,
+        ),
       ),
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(
@@ -90,9 +93,12 @@ class _SignInState extends State<SignIn> {
         widget.controller.show(SigningPhase.first);
       },
       child: const Text(
-        'Załóż konto',
+        'Stwórz konto',
         style: TextStyle(
-            color: Colors.black54, fontWeight: FontWeight.w400, fontSize: 13),
+          color: Colors.black54,
+          fontWeight: FontWeight.w400,
+          fontSize: 13,
+        ),
       ),
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all<Color>(
@@ -152,7 +158,7 @@ class _SignInState extends State<SignIn> {
           padding: const EdgeInsets.all(70),
           child: SizedBox(
             width: double.infinity,
-            height: calculateMainHeight(),
+            height: _calculateMainHeight(),
             child: Center(child: _form),
           ),
         ),
@@ -160,7 +166,7 @@ class _SignInState extends State<SignIn> {
     );
   }
 
-  double calculateMainHeight() {
+  double _calculateMainHeight() {
     double bottomInset;
     bottomInset = MediaQuery.of(context).viewInsets.bottom;
 
