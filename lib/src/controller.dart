@@ -22,11 +22,11 @@ class Controller {
     _phases[SigningPhase.fifth] = const Fifth();
   }
 
-  setContentSetter(Function(Widget widget) setContent) {
+  void setContentSetter(Function(Widget widget) setContent) {
     _setContent = setContent;
   }
 
-  show(SigningPhase phase) {
+  void show(SigningPhase phase) {
     _setContent!(_phases[phase]!);
   }
 

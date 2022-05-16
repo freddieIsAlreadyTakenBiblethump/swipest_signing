@@ -87,7 +87,7 @@ class _SignInState extends State<SignIn> {
     width: 150,
     child: TextButton(
       onPressed: () {
-        // TODO pass to registration
+        widget.controller.show(SigningPhase.first);
       },
       child: const Text(
         'Załóż konto',
@@ -142,6 +142,24 @@ class _SignInState extends State<SignIn> {
     ),
   );
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      resizeToAvoidBottomInset: false,
+      body: GestureDetector(
+        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+        child: Padding(
+          padding: const EdgeInsets.all(70),
+          child: SizedBox(
+            width: double.infinity,
+            height: calculateMainHeight(),
+            child: Center(child: _form),
+          ),
+        ),
+      ),
+    );
+  }
+
   double calculateMainHeight() {
     double bottomInset;
     bottomInset = MediaQuery.of(context).viewInsets.bottom;
@@ -161,23 +179,5 @@ class _SignInState extends State<SignIn> {
     } else {
       return double.infinity;
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Padding(
-          padding: const EdgeInsets.all(70),
-          child: SizedBox(
-            width: double.infinity,
-            height: calculateMainHeight(),
-            child: Center(child: _form),
-          ),
-        ),
-      ),
-    );
   }
 }
