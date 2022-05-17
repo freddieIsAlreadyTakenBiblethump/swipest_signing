@@ -17,7 +17,7 @@ class Controller {
     _phases[SigningPhase.signIn] = SignIn(this);
     _phases[SigningPhase.first] = First(this);
     _phases[SigningPhase.second] = Second(this);
-    _phases[SigningPhase.third] = const Third();
+    _phases[SigningPhase.third] = Third(this);
     _phases[SigningPhase.fourth] = const Fourth();
     _phases[SigningPhase.fifth] = const Fifth();
   }

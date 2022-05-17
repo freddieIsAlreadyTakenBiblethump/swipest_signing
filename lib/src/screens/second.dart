@@ -33,7 +33,7 @@ class _SecondState extends State<Second> {
   );
 
   late final _continueButton = SizedBox(
-    width: 220,
+    width: 150,
     child: TextButton(
       onPressed: () {
         widget.controller.show(SigningPhase.third);
