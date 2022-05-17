@@ -27,7 +27,7 @@ class _FifthState extends State<Fifth> {
         return 'Pole nie może być puste';
       }
 
-      if (EmailValidator.validate(value)) {
+      if (!EmailValidator.validate(value)) {
         return 'Niepoprawny format';
       }
 

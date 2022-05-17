@@ -17,11 +17,11 @@ class Sixth extends StatefulWidget {
 class _SixthState extends State<Sixth> {
 
   final _formKey = GlobalKey<FormState>();
-  final _emailKey = GlobalKey<FormFieldState>();
+  final _genderKey = GlobalKey<FormFieldState>();
 
-  late final _emailTextField = SwipestTextFormField(
-    widgetKey: _emailKey,
-    text: 'EMAIL',
+  late final _genderTextField = SwipestTextFormField(
+    widgetKey: _genderKey,
+    text: 'PŁEĆ',
     validator: (value) {
       if (value == null || value.isEmpty) {
         return 'Pole nie może być puste';
@@ -33,7 +33,7 @@ class _SixthState extends State<Sixth> {
 
       return null;
     },
-    onEditingComplete: () => _emailKey.currentState!.validate(),
+    onEditingComplete: () => _genderKey.currentState!.validate(),
     obscure: false,
   );
 
@@ -41,7 +41,9 @@ class _SixthState extends State<Sixth> {
     width: 150,
     child: TextButton(
       onPressed: () {
-        widget.controller.show(SigningPhase.sixth);
+        if (_formKey.currentState!.validate()) {
+          // TODO registration process
+        }
       },
       child: const Text(
         'Kontynuuj',
@@ -75,7 +77,7 @@ class _SixthState extends State<Sixth> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _emailTextField,
+                child: _genderTextField,
               ),
             ],
           ),
@@ -98,7 +100,7 @@ class _SixthState extends State<Sixth> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        widget.controller.show(SigningPhase.fourth);
+        widget.controller.show(SigningPhase.fifth);
         return Future.value(false);
       },
       child: Scaffold(

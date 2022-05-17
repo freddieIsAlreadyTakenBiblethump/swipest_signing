@@ -21,7 +21,7 @@ class Controller {
     _phases[SigningPhase.third] = Third(this);
     _phases[SigningPhase.fourth] = Fourth(this);
     _phases[SigningPhase.fifth] = Fifth(this);
-    _phases[SigningPhase.fifth] = Sixth(this);
+    _phases[SigningPhase.sixth] = Sixth(this);
   }
 
   void setContentSetter(Function(Widget widget) setContent) {
