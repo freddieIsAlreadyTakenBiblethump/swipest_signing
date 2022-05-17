@@ -17,6 +17,7 @@ class _FirstState extends State<First> {
 
   final _formKey = GlobalKey<FormState>();
   final _nameKey = GlobalKey<FormFieldState>();
+  final _surnameKey = GlobalKey<FormFieldState>();
 
   late final _nameTextField = SwipestTextFormField(
     widgetKey: _nameKey,
@@ -26,6 +27,16 @@ class _FirstState extends State<First> {
         return 'Pole nie może być puste';
       }
 
+      return null;
+    },
+    onEditingComplete: () => _nameKey.currentState!.validate(),
+    obscure: false,
+  );
+
+  late final _surnameTextField = SwipestTextFormField(
+    widgetKey: _surnameKey,
+    text: 'NAZWISKO',
+    validator: (value) {
       return null;
     },
     onEditingComplete: () => _nameKey.currentState!.validate(),
@@ -71,6 +82,10 @@ class _FirstState extends State<First> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: _nameTextField,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width,
+                child: _surnameTextField,
               ),
             ],
           ),
