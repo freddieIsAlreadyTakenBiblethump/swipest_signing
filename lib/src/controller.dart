@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:swipest_signing/src/screens/sixth.dart';
 
 import 'screens/fifth.dart';
 import 'screens/first.dart';
@@ -19,7 +20,8 @@ class Controller {
     _phases[SigningPhase.second] = Second(this);
     _phases[SigningPhase.third] = Third(this);
     _phases[SigningPhase.fourth] = Fourth(this);
-    _phases[SigningPhase.fifth] = const Fifth();
+    _phases[SigningPhase.fifth] = Fifth(this);
+    _phases[SigningPhase.fifth] = Sixth(this);
   }
 
   void setContentSetter(Function(Widget widget) setContent) {

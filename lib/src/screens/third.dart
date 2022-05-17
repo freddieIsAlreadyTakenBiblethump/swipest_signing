@@ -38,7 +38,9 @@ class _ThirdState extends State<Third> {
     width: 150,
     child: TextButton(
       onPressed: () {
-        widget.controller.show(SigningPhase.fourth);
+        if (_formKey.currentState!.validate()) {
+          widget.controller.show(SigningPhase.fourth);
+        }
       },
       child: const Text(
         'Kontynuuj',

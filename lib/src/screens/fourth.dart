@@ -18,7 +18,7 @@ class _FourthState extends State<Fourth> {
   final _formKey = GlobalKey<FormState>();
   final _passwordKey = GlobalKey<FormFieldState>();
 
-  late final _birthdayTextField = SwipestTextFormField(
+  late final _passwordTextField = SwipestTextFormField(
     widgetKey: _passwordKey,
     text: 'HASŁO',
     validator: (value) {
@@ -40,7 +40,9 @@ class _FourthState extends State<Fourth> {
     width: 150,
     child: TextButton(
       onPressed: () {
-        widget.controller.show(SigningPhase.fifth);
+        if (_formKey.currentState!.validate()) {
+          widget.controller.show(SigningPhase.fifth);
+        }
       },
       child: const Text(
         'Kontynuuj',
@@ -74,7 +76,7 @@ class _FourthState extends State<Fourth> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _birthdayTextField,
+                child: _passwordTextField,
               ),
             ],
           ),

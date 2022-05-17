@@ -47,7 +47,9 @@ class _FirstState extends State<First> {
     width: 220,
     child: TextButton(
       onPressed: () {
-        widget.controller.show(SigningPhase.second);
+        if (_formKey.currentState!.validate()) {
+          widget.controller.show(SigningPhase.second);
+        }
       },
       child: const Text(
         'Stwórz konto i zaakceptuj',

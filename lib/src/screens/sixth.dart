@@ -1,34 +1,39 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class Second extends StatefulWidget {
+class Sixth extends StatefulWidget {
 
   final Controller controller;
 
-  const Second(this.controller, {Key? key}) : super(key: key);
+  const Sixth(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<Second> createState() => _SecondState();
+  State<Sixth> createState() => _SixthState();
 }
 
-class _SecondState extends State<Second> {
+class _SixthState extends State<Sixth> {
 
   final _formKey = GlobalKey<FormState>();
-  final _birthdayKey = GlobalKey<FormFieldState>();
+  final _emailKey = GlobalKey<FormFieldState>();
 
-  late final _birthdayTextField = SwipestTextFormField(
-    widgetKey: _birthdayKey,
-    text: 'URODZINY',
+  late final _emailTextField = SwipestTextFormField(
+    widgetKey: _emailKey,
+    text: 'EMAIL',
     validator: (value) {
       if (value == null || value.isEmpty) {
         return 'Pole nie może być puste';
       }
 
+      if (EmailValidator.validate(value)) {
+        return 'Niepoprawny format';
+      }
+
       return null;
     },
-    onEditingComplete: () => _birthdayKey.currentState!.validate(),
+    onEditingComplete: () => _emailKey.currentState!.validate(),
     obscure: false,
   );
 
@@ -36,9 +41,7 @@ class _SecondState extends State<Second> {
     width: 150,
     child: TextButton(
       onPressed: () {
-        if (_formKey.currentState!.validate()) {
-          widget.controller.show(SigningPhase.third);
-        }
+        widget.controller.show(SigningPhase.sixth);
       },
       child: const Text(
         'Kontynuuj',
@@ -72,7 +75,7 @@ class _SecondState extends State<Second> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _birthdayTextField,
+                child: _emailTextField,
               ),
             ],
           ),
@@ -95,7 +98,7 @@ class _SecondState extends State<Second> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        widget.controller.show(SigningPhase.first);
+        widget.controller.show(SigningPhase.fourth);
         return Future.value(false);
       },
       child: Scaffold(
