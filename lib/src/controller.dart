@@ -15,7 +15,7 @@ class Controller {
   final Map<SigningPhase, Widget> _phases = {};
 
   Controller() {
-    _phases[SigningPhase.signIn] = SignIn(this);
+    _phases[SigningPhase.signIn] = Sixth(this); //todo change to SignIn
     _phases[SigningPhase.first] = First(this);
     _phases[SigningPhase.second] = Second(this);
     _phases[SigningPhase.third] = Third(this);

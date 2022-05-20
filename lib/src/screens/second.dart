@@ -29,7 +29,6 @@ class _SecondState extends State<Second> {
       return null;
     },
     onEditingComplete: () => _birthdayKey.currentState!.validate(),
-    obscure: false,
   );
 
   late final _continueButton = SizedBox(

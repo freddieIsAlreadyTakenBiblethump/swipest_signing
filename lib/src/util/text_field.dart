@@ -7,6 +7,8 @@ class SwipestTextFormField extends StatefulWidget {
   Function()? onEditingComplete;
   Key? widgetKey;
   bool obscure;
+  bool enabled;
+  Function(String)? onChanged;
 
   SwipestTextFormField({
     this.text = '',
@@ -14,7 +16,9 @@ class SwipestTextFormField extends StatefulWidget {
     this.validator,
     this.onEditingComplete,
     this.widgetKey,
-    required this.obscure,
+    this.obscure = false,
+    this.enabled = true,
+    this.onChanged,
   });
 
   @override
@@ -44,6 +48,8 @@ class _SwipestTextFormFieldState extends State<SwipestTextFormField> {
       controller: widget.textEditingController, // from above constructor
       validator: widget.validator, // from above constructor
       onEditingComplete: widget.onEditingComplete, // from above constructor
+      enabled: widget.enabled,
+      onChanged: widget.onChanged,
       decoration: InputDecoration(
         labelText: widget.text, // from above constructor
         labelStyle: const TextStyle(
