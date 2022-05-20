@@ -37,6 +37,10 @@ class _FirstState extends State<First> {
     widgetKey: _surnameKey,
     text: 'NAZWISKO',
     validator: (value) {
+      if (value == null || value.isEmpty) {
+        return 'Pole nie może być puste';
+      }
+
       return null;
     },
     onEditingComplete: () => _nameKey.currentState!.validate(),
@@ -76,6 +80,23 @@ class _FirstState extends State<First> {
     key: _formKey,
     child: Stack(
       children: [
+        const Positioned(
+          top: 145,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              'Jak ci na imię?',
+              style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
         Positioned(
           top: 200,
           child: Column(

@@ -70,6 +70,23 @@ class _FifthState extends State<Fifth> {
     key: _formKey,
     child: Stack(
       children: [
+        const Positioned(
+          top: 135,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              'Jaki masz adres email?',
+              style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
         Positioned(
           top: 200,
           child: Column(

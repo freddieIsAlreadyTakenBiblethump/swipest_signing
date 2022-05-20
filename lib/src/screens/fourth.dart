@@ -69,6 +69,42 @@ class _FourthState extends State<Fourth> {
     key: _formKey,
     child: Stack(
       children: [
+        const Positioned(
+          top: 135,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              'Ustaw hasło',
+              style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
+        const Positioned(
+          top: 170,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                'Twoje hasło powinno mieć conajmniej 8 znaków',
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ),
+          ),
+        ),
         Positioned(
           top: 200,
           child: Column(

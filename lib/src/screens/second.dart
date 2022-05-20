@@ -65,6 +65,23 @@ class _SecondState extends State<Second> {
     key: _formKey,
     child: Stack(
       children: [
+        const Positioned(
+          top: 145,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              'Kiedy są twoje urodziny?',
+              style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
         Positioned(
           top: 200,
           child: Column(
