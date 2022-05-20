@@ -43,7 +43,7 @@ class _SignInState extends State<SignIn> {
 
   late final _passwordTextField = SwipestTextFormField(
     widgetKey: _passwordKey,
-    text: 'PASSWORD',
+    text: 'HASŁO',
     validator: (value) {
       if (value == null || value.isEmpty || value.length < 8) {
         return 'Wprowadź conajmniej 8 znaków';
@@ -117,6 +117,23 @@ class _SignInState extends State<SignIn> {
     key: _formKey,
     child: Stack(
       children: [
+        const Positioned(
+          top: 145,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: Text(
+              'Zaloguj się',
+              style: TextStyle(
+                color: Colors.black54,
+                fontWeight: FontWeight.w500,
+                fontSize: 19,
+              ),
+            ),
+          ),
+        ),
         Positioned(
           top: 200,
           child: Column(
@@ -155,7 +172,12 @@ class _SignInState extends State<SignIn> {
       body: GestureDetector(
         onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
         child: Padding(
-          padding: const EdgeInsets.all(70),
+          padding: const EdgeInsets.only(
+            top: 70,
+            right: 70,
+            bottom: 30,
+            left: 70
+          ),
           child: SizedBox(
             width: double.infinity,
             height: _calculateMainHeight(),
