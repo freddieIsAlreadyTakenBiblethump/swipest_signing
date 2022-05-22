@@ -42,6 +42,7 @@ class _FifthState extends State<Fifth> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
+          widget.controller.dataCollector.setEmail(_emailKey.currentState!.value);
           widget.controller.show(SigningPhase.sixth);
         }
       },

@@ -52,6 +52,8 @@ class _FirstState extends State<First> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
+          widget.controller.dataCollector.setName(_nameKey.currentState!.value);
+          widget.controller.dataCollector.setSurname(_surnameKey.currentState!.value);
           widget.controller.show(SigningPhase.second);
         }
       },

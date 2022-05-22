@@ -19,7 +19,7 @@ class _SixthState extends State<Sixth> {
   final _genderKey = GlobalKey<FormFieldState>();
   final _otherGenderKey = GlobalKey<FormFieldState>();
 
-  bool _shouldShowGenderTextField = false;
+  bool _isOtherGenderSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +63,11 @@ class _SixthState extends State<Sixth> {
       onChanged: (selected) {
         if (selected == 'inna') {
           setState((){
-            _shouldShowGenderTextField = true;
+            _isOtherGenderSelected = true;
           });
         } else {
           setState((){
-            _shouldShowGenderTextField = false;
+            _isOtherGenderSelected = false;
           });
         }
         _genderKey.currentState!.validate();
@@ -102,6 +102,11 @@ class _SixthState extends State<Sixth> {
       child: TextButton(
         onPressed: () {
           if (_formKey.currentState!.validate()) {
+            if (_isOtherGenderSelected) {
+              widget.controller.dataCollector.setGender(_otherGenderKey.currentState!.value);
+            } else {
+              widget.controller.dataCollector.setGender(_genderKey.currentState!.value);
+            }
             // TODO registration process
           }
         },
@@ -141,7 +146,7 @@ class _SixthState extends State<Sixth> {
                 ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
-                  child: _shouldShowGenderTextField
+                  child: _isOtherGenderSelected
                       ? otherGenderTextField
                       : Container()
                 ),

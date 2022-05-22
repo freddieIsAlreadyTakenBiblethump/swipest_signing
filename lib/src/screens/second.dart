@@ -36,6 +36,7 @@ class _SecondState extends State<Second> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
+          widget.controller.dataCollector.setBirthday(_birthdayKey.currentState!.value);
           widget.controller.show(SigningPhase.third);
         }
       },

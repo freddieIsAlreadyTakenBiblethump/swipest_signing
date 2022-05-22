@@ -39,6 +39,7 @@ class _ThirdState extends State<Third> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
+          widget.controller.dataCollector.setUsername(_usernameKey.currentState!.value);
           widget.controller.show(SigningPhase.fourth);
         }
       },

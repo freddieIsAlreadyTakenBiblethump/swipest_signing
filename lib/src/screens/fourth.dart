@@ -41,6 +41,7 @@ class _FourthState extends State<Fourth> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
+          widget.controller.dataCollector.setPassword(_passwordKey.currentState!.value);
           widget.controller.show(SigningPhase.fifth);
         }
       },
