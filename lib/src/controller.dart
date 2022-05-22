@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:swipest_signing/src/screens/sixth.dart';
+import 'package:swipest_signing/src/util/data_collector.dart';
 
 import 'screens/fifth.dart';
 import 'screens/first.dart';
@@ -10,12 +11,13 @@ import 'screens/third.dart';
 
 class Controller {
 
+  DataCollector dataCollector = DataCollector();
   Function(Widget widget)? _setContent;
 
   final Map<SigningPhase, Widget> _phases = {};
 
   Controller() {
-    _phases[SigningPhase.signIn] = Sixth(this); //todo change to SignIn
+    _phases[SigningPhase.signIn] = SignIn(this); //todo change to SignIn
     _phases[SigningPhase.first] = First(this);
     _phases[SigningPhase.second] = Second(this);
     _phases[SigningPhase.third] = Third(this);
