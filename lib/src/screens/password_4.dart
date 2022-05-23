@@ -43,7 +43,7 @@ class _Password4StepState extends State<Password4Step> {
       return null;
     },
     onEditingComplete: () => _passwordKey.currentState!.validate(),
-    obscure: false,
+    obscure: true,
   );
 
   late final _continueButton = SizedBox(

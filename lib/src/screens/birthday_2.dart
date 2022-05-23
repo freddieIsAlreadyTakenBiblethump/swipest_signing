@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../controller.dart';
 import '../util/text_field.dart';
@@ -19,6 +20,7 @@ class _Birthday2StepState extends State<Birthday2Step> {
   final _birthdayKey = GlobalKey<FormFieldState>();
 
   final _birthdayController = TextEditingController();
+  String _selectedBirthdayTimestamp = '';
 
   @override
   void initState() {
@@ -30,6 +32,7 @@ class _Birthday2StepState extends State<Birthday2Step> {
   late final _birthdayTextField = SwipestTextFormField(
     widgetKey: _birthdayKey,
     controller: _birthdayController,
+    enabled: false,
     text: 'URODZINY',
     validator: (value) {
       if (value == null || value.isEmpty) {
@@ -46,7 +49,7 @@ class _Birthday2StepState extends State<Birthday2Step> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          widget.controller.dataCollector.setBirthday(_birthdayKey.currentState!.value);
+          widget.controller.dataCollector.setBirthday(_selectedBirthdayTimestamp);
           widget.controller.show(SigningPhase.third);
         }
       },
@@ -99,7 +102,41 @@ class _Birthday2StepState extends State<Birthday2Step> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _birthdayTextField,
+                child: GestureDetector(
+                  onTap: () {
+                    void _onSelectionChanged(DateRangePickerSelectionChangedArgs args) {
+                      DateTime birthday = args.value;
+                      _selectedBirthdayTimestamp = birthday.millisecondsSinceEpoch.toString();
+
+                      setState(() {
+                        _birthdayController.text = '${birthday.day}/${birthday.month}/${birthday.year}';
+                      });
+                    }
+
+                    showDialog(context: context, builder: (_) => AlertDialog(
+                      content: SizedBox(
+                        height: 250,
+                        child: SfDateRangePicker(
+                          onSelectionChanged: _onSelectionChanged,
+                          selectionMode: DateRangePickerSelectionMode.single,
+                          maxDate: DateTime.now().subtract(const Duration(days: 365 * 18)),
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                          child: const Text(
+                            'Zatwierdź',
+                            style: TextStyle(color: Colors.black, fontSize: 14),
+                          ),
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                        ),
+                      ],
+                    ));
+                  },
+                  child: _birthdayTextField,
+                ),
               ),
             ],
           ),
