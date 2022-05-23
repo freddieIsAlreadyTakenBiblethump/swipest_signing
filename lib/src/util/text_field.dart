@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SwipestTextFormField extends StatefulWidget {
   String text;
-  TextEditingController? textEditingController;
+  TextEditingController? controller;
   FormFieldValidator<String>? validator;
   Function()? onEditingComplete;
   Key? widgetKey;
@@ -12,7 +12,7 @@ class SwipestTextFormField extends StatefulWidget {
 
   SwipestTextFormField({
     this.text = '',
-    this.textEditingController,
+    this.controller,
     this.validator,
     this.onEditingComplete,
     this.widgetKey,
@@ -45,7 +45,7 @@ class _SwipestTextFormFieldState extends State<SwipestTextFormField> {
     return TextFormField(
       obscureText: _obscure, // from above constructor
       key: widget.widgetKey, // from above constructor
-      controller: widget.textEditingController, // from above constructor
+      controller: widget.controller, // from above constructor
       validator: widget.validator, // from above constructor
       onEditingComplete: widget.onEditingComplete, // from above constructor
       enabled: widget.enabled,

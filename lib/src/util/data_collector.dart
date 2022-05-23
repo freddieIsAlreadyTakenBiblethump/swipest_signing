@@ -9,6 +9,14 @@ class DataCollector {
   void setPassword(String password) => _data[_Data.password] = password;
   void setEmail(String email) => _data[_Data.email] = email;
   void setGender(String gender) => _data[_Data.gender] = gender;
+
+  String getName() => _data[_Data.name] ?? '';
+  String getSurename() => _data[_Data.surename] ?? '';
+  String getBirthday() => _data[_Data.birthday] ?? '';
+  String getUsername() => _data[_Data.username] ?? '';
+  String getPassword() => _data[_Data.password] ?? '';
+  String getEmail() => _data[_Data.email] ?? '';
+  String getGender() => _data[_Data.gender] ?? '';
 }
 
 enum _Data {

@@ -17,10 +17,22 @@ class _FirstState extends State<First> {
 
   final _formKey = GlobalKey<FormState>();
   final _nameKey = GlobalKey<FormFieldState>();
-  final _surnameKey = GlobalKey<FormFieldState>();
+  final _surenameKey = GlobalKey<FormFieldState>();
+
+  final _nameController = TextEditingController();
+  final _surenameController = TextEditingController();
+
+  @override
+  void initState() {
+    _nameController.text = widget.controller.dataCollector.getName();
+    _surenameController.text = widget.controller.dataCollector.getSurename();
+
+    super.initState();
+  }
 
   late final _nameTextField = SwipestTextFormField(
     widgetKey: _nameKey,
+    controller: _nameController,
     text: 'IMIĘ',
     validator: (value) {
       if (value == null || value.isEmpty) {
@@ -34,7 +46,8 @@ class _FirstState extends State<First> {
   );
 
   late final _surnameTextField = SwipestTextFormField(
-    widgetKey: _surnameKey,
+    widgetKey: _surenameKey,
+    controller: _surenameController,
     text: 'NAZWISKO',
     validator: (value) {
       if (value == null || value.isEmpty) {
@@ -53,7 +66,7 @@ class _FirstState extends State<First> {
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           widget.controller.dataCollector.setName(_nameKey.currentState!.value);
-          widget.controller.dataCollector.setSurname(_surnameKey.currentState!.value);
+          widget.controller.dataCollector.setSurname(_surenameKey.currentState!.value);
           widget.controller.show(SigningPhase.second);
         }
       },
