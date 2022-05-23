@@ -3,42 +3,45 @@ import 'package:flutter/material.dart';
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class Second extends StatefulWidget {
+class Username3Step extends StatefulWidget {
 
   final Controller controller;
 
-  const Second(this.controller, {Key? key}) : super(key: key);
+  const Username3Step(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<Second> createState() => _SecondState();
+  State<Username3Step> createState() => _Username3StepState();
 }
 
-class _SecondState extends State<Second> {
+class _Username3StepState extends State<Username3Step> {
 
   final _formKey = GlobalKey<FormState>();
-  final _birthdayKey = GlobalKey<FormFieldState>();
+  final _usernameKey = GlobalKey<FormFieldState>();
 
-  final _birthdayController = TextEditingController();
+  final _usernameController = TextEditingController();
 
   @override
   void initState() {
-    _birthdayController.text = widget.controller.dataCollector.getBirthday();
+    _usernameController.text = widget.controller.dataCollector.getUsername();
 
     super.initState();
   }
 
-  late final _birthdayTextField = SwipestTextFormField(
-    widgetKey: _birthdayKey,
-    controller: _birthdayController,
-    text: 'URODZINY',
+  late final _usernameTextField = SwipestTextFormField(
+    widgetKey: _usernameKey,
+    controller: _usernameController,
+    text: 'USERNAME',
     validator: (value) {
       if (value == null || value.isEmpty) {
         return 'Pole nie może być puste';
       }
 
+      // TODO asynchronous username avaliablity check
+
       return null;
     },
-    onEditingComplete: () => _birthdayKey.currentState!.validate(),
+    onEditingComplete: () => _usernameKey.currentState!.validate(),
+    obscure: false,
   );
 
   late final _continueButton = SizedBox(
@@ -46,8 +49,8 @@ class _SecondState extends State<Second> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          widget.controller.dataCollector.setBirthday(_birthdayKey.currentState!.value);
-          widget.controller.show(SigningPhase.third);
+          widget.controller.dataCollector.setUsername(_usernameKey.currentState!.value);
+          widget.controller.show(SigningPhase.fourth);
         }
       },
       child: const Text(
@@ -83,7 +86,7 @@ class _SecondState extends State<Second> {
           child: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              'Kiedy są twoje urodziny?',
+              'Twój username',
               style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w500,
@@ -99,7 +102,7 @@ class _SecondState extends State<Second> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _birthdayTextField,
+                child: _usernameTextField,
               ),
             ],
           ),
@@ -122,7 +125,7 @@ class _SecondState extends State<Second> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        widget.controller.show(SigningPhase.first);
+        widget.controller.show(SigningPhase.second);
         return Future.value(false);
       },
       child: Scaffold(

@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class First extends StatefulWidget {
+class Name1Step extends StatefulWidget {
 
   final Controller controller;
 
-  const First(this.controller, {Key? key}) : super(key: key);
+  const Name1Step(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<First> createState() => _FirstState();
+  State<Name1Step> createState() => _Name1StepState();
 }
 
-class _FirstState extends State<First> {
+class _Name1StepState extends State<Name1Step> {
 
   final _formKey = GlobalKey<FormState>();
   final _nameKey = GlobalKey<FormFieldState>();

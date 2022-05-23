@@ -1,46 +1,49 @@
+import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class Third extends StatefulWidget {
+class Email5Step extends StatefulWidget {
 
   final Controller controller;
 
-  const Third(this.controller, {Key? key}) : super(key: key);
+  const Email5Step(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<Third> createState() => _ThirdState();
+  State<Email5Step> createState() => _Email5StepState();
 }
 
-class _ThirdState extends State<Third> {
+class _Email5StepState extends State<Email5Step> {
 
   final _formKey = GlobalKey<FormState>();
-  final _usernameKey = GlobalKey<FormFieldState>();
+  final _emailKey = GlobalKey<FormFieldState>();
 
-  final _usernameController = TextEditingController();
+  final _emailController = TextEditingController();
 
   @override
   void initState() {
-    _usernameController.text = widget.controller.dataCollector.getUsername();
+    _emailController.text = widget.controller.dataCollector.getEmail();
 
     super.initState();
   }
 
-  late final _usernameTextField = SwipestTextFormField(
-    widgetKey: _usernameKey,
-    controller: _usernameController,
-    text: 'USERNAME',
+  late final _emailTextField = SwipestTextFormField(
+    widgetKey: _emailKey,
+    controller: _emailController,
+    text: 'EMAIL',
     validator: (value) {
       if (value == null || value.isEmpty) {
         return 'Pole nie może być puste';
       }
 
-      // TODO asynchronous username avaliablity check
+      if (!EmailValidator.validate(value)) {
+        return 'Niepoprawny format';
+      }
 
       return null;
     },
-    onEditingComplete: () => _usernameKey.currentState!.validate(),
+    onEditingComplete: () => _emailKey.currentState!.validate(),
     obscure: false,
   );
 
@@ -49,8 +52,8 @@ class _ThirdState extends State<Third> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          widget.controller.dataCollector.setUsername(_usernameKey.currentState!.value);
-          widget.controller.show(SigningPhase.fourth);
+          widget.controller.dataCollector.setEmail(_emailKey.currentState!.value);
+          widget.controller.show(SigningPhase.sixth);
         }
       },
       child: const Text(
@@ -79,14 +82,14 @@ class _ThirdState extends State<Third> {
     child: Stack(
       children: [
         const Positioned(
-          top: 145,
+          top: 135,
           right: 0,
           bottom: 0,
           left: 0,
           child: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              'Twój username',
+              'Jaki masz adres email?',
               style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w500,
@@ -102,7 +105,7 @@ class _ThirdState extends State<Third> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _usernameTextField,
+                child: _emailTextField,
               ),
             ],
           ),
@@ -125,7 +128,7 @@ class _ThirdState extends State<Third> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        widget.controller.show(SigningPhase.second);
+        widget.controller.show(SigningPhase.fourth);
         return Future.value(false);
       },
       child: Scaffold(

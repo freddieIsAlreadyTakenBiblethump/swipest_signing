@@ -3,47 +3,42 @@ import 'package:flutter/material.dart';
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class Fourth extends StatefulWidget {
+class Birthday2Step extends StatefulWidget {
 
   final Controller controller;
 
-  const Fourth(this.controller, {Key? key}) : super(key: key);
+  const Birthday2Step(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<Fourth> createState() => _FourthState();
+  State<Birthday2Step> createState() => _Birthday2StepState();
 }
 
-class _FourthState extends State<Fourth> {
+class _Birthday2StepState extends State<Birthday2Step> {
 
   final _formKey = GlobalKey<FormState>();
-  final _passwordKey = GlobalKey<FormFieldState>();
+  final _birthdayKey = GlobalKey<FormFieldState>();
 
-  final _passwordController = TextEditingController();
+  final _birthdayController = TextEditingController();
 
   @override
   void initState() {
-    _passwordController.text = widget.controller.dataCollector.getPassword();
+    _birthdayController.text = widget.controller.dataCollector.getBirthday();
 
     super.initState();
   }
 
-  late final _passwordTextField = SwipestTextFormField(
-    widgetKey: _passwordKey,
-    controller: _passwordController,
-    text: 'HASŁO',
+  late final _birthdayTextField = SwipestTextFormField(
+    widgetKey: _birthdayKey,
+    controller: _birthdayController,
+    text: 'URODZINY',
     validator: (value) {
       if (value == null || value.isEmpty) {
         return 'Pole nie może być puste';
       }
 
-      if (value.length < 8) {
-        return 'Hasło nie może mieć mniej niż 8 znaków';
-      }
-
       return null;
     },
-    onEditingComplete: () => _passwordKey.currentState!.validate(),
-    obscure: false,
+    onEditingComplete: () => _birthdayKey.currentState!.validate(),
   );
 
   late final _continueButton = SizedBox(
@@ -51,8 +46,8 @@ class _FourthState extends State<Fourth> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          widget.controller.dataCollector.setPassword(_passwordKey.currentState!.value);
-          widget.controller.show(SigningPhase.fifth);
+          widget.controller.dataCollector.setBirthday(_birthdayKey.currentState!.value);
+          widget.controller.show(SigningPhase.third);
         }
       },
       child: const Text(
@@ -81,37 +76,18 @@ class _FourthState extends State<Fourth> {
     child: Stack(
       children: [
         const Positioned(
-          top: 135,
+          top: 145,
           right: 0,
           bottom: 0,
           left: 0,
           child: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              'Ustaw hasło',
+              'Kiedy są twoje urodziny?',
               style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w500,
                 fontSize: 19,
-              ),
-            ),
-          ),
-        ),
-        const Positioned(
-          top: 170,
-          right: 0,
-          bottom: 0,
-          left: 0,
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: FittedBox(
-              fit: BoxFit.fitWidth,
-              child: Text(
-                'Twoje hasło powinno mieć conajmniej 8 znaków',
-                style: TextStyle(
-                  color: Colors.black26,
-                  fontWeight: FontWeight.w400,
-                ),
               ),
             ),
           ),
@@ -123,7 +99,7 @@ class _FourthState extends State<Fourth> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _passwordTextField,
+                child: _birthdayTextField,
               ),
             ],
           ),
@@ -146,7 +122,7 @@ class _FourthState extends State<Fourth> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        widget.controller.show(SigningPhase.third);
+        widget.controller.show(SigningPhase.first);
         return Future.value(false);
       },
       child: Scaffold(

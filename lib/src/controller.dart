@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
-import 'package:swipest_signing/src/screens/sixth.dart';
+import 'package:swipest_signing/src/screens/gender_6.dart';
 import 'package:swipest_signing/src/util/data_collector.dart';
 
-import 'screens/fifth.dart';
-import 'screens/first.dart';
-import 'screens/fourth.dart';
-import 'screens/second.dart';
+import 'screens/email_5.dart';
+import 'screens/name_1.dart';
+import 'screens/password_4.dart';
+import 'screens/birthday_2.dart';
 import 'screens/signin.dart';
-import 'screens/third.dart';
+import 'screens/username_3.dart';
 
 class Controller {
 
@@ -18,12 +18,12 @@ class Controller {
 
   Controller() {
     _phases[SigningPhase.signIn] = SignIn(this);
-    _phases[SigningPhase.first] = First(this);
-    _phases[SigningPhase.second] = Second(this);
-    _phases[SigningPhase.third] = Third(this);
-    _phases[SigningPhase.fourth] = Fourth(this);
-    _phases[SigningPhase.fifth] = Fifth(this);
-    _phases[SigningPhase.sixth] = Sixth(this);
+    _phases[SigningPhase.first] = Name1Step(this);
+    _phases[SigningPhase.second] = Birthday2Step(this);
+    _phases[SigningPhase.third] = Username3Step(this);
+    _phases[SigningPhase.fourth] = Password4Step(this);
+    _phases[SigningPhase.fifth] = Email5Step(this);
+    _phases[SigningPhase.sixth] = Gender6Step(this);
   }
 
   void setContentSetter(Function(Widget widget) setContent) {

@@ -1,49 +1,48 @@
-import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class Fifth extends StatefulWidget {
+class Password4Step extends StatefulWidget {
 
   final Controller controller;
 
-  const Fifth(this.controller, {Key? key}) : super(key: key);
+  const Password4Step(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<Fifth> createState() => _FifthState();
+  State<Password4Step> createState() => _Password4StepState();
 }
 
-class _FifthState extends State<Fifth> {
+class _Password4StepState extends State<Password4Step> {
 
   final _formKey = GlobalKey<FormState>();
-  final _emailKey = GlobalKey<FormFieldState>();
+  final _passwordKey = GlobalKey<FormFieldState>();
 
-  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   void initState() {
-    _emailController.text = widget.controller.dataCollector.getEmail();
+    _passwordController.text = widget.controller.dataCollector.getPassword();
 
     super.initState();
   }
 
-  late final _emailTextField = SwipestTextFormField(
-    widgetKey: _emailKey,
-    controller: _emailController,
-    text: 'EMAIL',
+  late final _passwordTextField = SwipestTextFormField(
+    widgetKey: _passwordKey,
+    controller: _passwordController,
+    text: 'HASŁO',
     validator: (value) {
       if (value == null || value.isEmpty) {
         return 'Pole nie może być puste';
       }
 
-      if (!EmailValidator.validate(value)) {
-        return 'Niepoprawny format';
+      if (value.length < 8) {
+        return 'Hasło nie może mieć mniej niż 8 znaków';
       }
 
       return null;
     },
-    onEditingComplete: () => _emailKey.currentState!.validate(),
+    onEditingComplete: () => _passwordKey.currentState!.validate(),
     obscure: false,
   );
 
@@ -52,8 +51,8 @@ class _FifthState extends State<Fifth> {
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
-          widget.controller.dataCollector.setEmail(_emailKey.currentState!.value);
-          widget.controller.show(SigningPhase.sixth);
+          widget.controller.dataCollector.setPassword(_passwordKey.currentState!.value);
+          widget.controller.show(SigningPhase.fifth);
         }
       },
       child: const Text(
@@ -89,11 +88,30 @@ class _FifthState extends State<Fifth> {
           child: Align(
             alignment: Alignment.topCenter,
             child: Text(
-              'Jaki masz adres email?',
+              'Ustaw hasło',
               style: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.w500,
                 fontSize: 19,
+              ),
+            ),
+          ),
+        ),
+        const Positioned(
+          top: 170,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Text(
+                'Twoje hasło powinno mieć conajmniej 8 znaków',
+                style: TextStyle(
+                  color: Colors.black26,
+                  fontWeight: FontWeight.w400,
+                ),
               ),
             ),
           ),
@@ -105,7 +123,7 @@ class _FifthState extends State<Fifth> {
             children: [
               SizedBox(
                 width: MediaQuery.of(context).size.width,
-                child: _emailTextField,
+                child: _passwordTextField,
               ),
             ],
           ),
@@ -128,7 +146,7 @@ class _FifthState extends State<Fifth> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () {
-        widget.controller.show(SigningPhase.fourth);
+        widget.controller.show(SigningPhase.third);
         return Future.value(false);
       },
       child: Scaffold(

@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../controller.dart';
 import '../util/text_field.dart';
 
-class Sixth extends StatefulWidget {
+class Gender6Step extends StatefulWidget {
 
   final Controller controller;
 
-  const Sixth(this.controller, {Key? key}) : super(key: key);
+  const Gender6Step(this.controller, {Key? key}) : super(key: key);
 
   @override
-  State<Sixth> createState() => _SixthState();
+  State<Gender6Step> createState() => _Gender6StepState();
 }
 
-class _SixthState extends State<Sixth> {
+class _Gender6StepState extends State<Gender6Step> {
 
   final _formKey = GlobalKey<FormState>();
   final _genderKey = GlobalKey<FormFieldState>();
