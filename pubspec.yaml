@@ -13,6 +13,8 @@ dependencies:
     sdk: flutter
 
   email_validator: ^2.0.1
+  syncfusion_flutter_datepicker: ^20.1.56
+  age_calculator: ^1.0.0
 
 dev_dependencies:
   flutter_test:
