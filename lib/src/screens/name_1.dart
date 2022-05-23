@@ -17,15 +17,12 @@ class _Name1StepState extends State<Name1Step> {
 
   final _formKey = GlobalKey<FormState>();
   final _nameKey = GlobalKey<FormFieldState>();
-  final _surenameKey = GlobalKey<FormFieldState>();
 
   final _nameController = TextEditingController();
-  final _surenameController = TextEditingController();
 
   @override
   void initState() {
     _nameController.text = widget.controller.dataCollector.getName();
-    _surenameController.text = widget.controller.dataCollector.getSurename();
 
     super.initState();
   }
@@ -45,28 +42,12 @@ class _Name1StepState extends State<Name1Step> {
     obscure: false,
   );
 
-  late final _surnameTextField = SwipestTextFormField(
-    widgetKey: _surenameKey,
-    controller: _surenameController,
-    text: 'NAZWISKO',
-    validator: (value) {
-      if (value == null || value.isEmpty) {
-        return 'Pole nie może być puste';
-      }
-
-      return null;
-    },
-    onEditingComplete: () => _nameKey.currentState!.validate(),
-    obscure: false,
-  );
-
   late final _signUpAndAcceptButton = SizedBox(
     width: 220,
     child: TextButton(
       onPressed: () {
         if (_formKey.currentState!.validate()) {
           widget.controller.dataCollector.setName(_nameKey.currentState!.value);
-          widget.controller.dataCollector.setSurname(_surenameKey.currentState!.value);
           widget.controller.show(SigningPhase.second);
         }
       },
@@ -120,10 +101,6 @@ class _Name1StepState extends State<Name1Step> {
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: _nameTextField,
-              ),
-              SizedBox(
-                width: MediaQuery.of(context).size.width,
-                child: _surnameTextField,
               ),
             ],
           ),
