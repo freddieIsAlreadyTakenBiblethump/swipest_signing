@@ -18,8 +18,18 @@ class _FourthState extends State<Fourth> {
   final _formKey = GlobalKey<FormState>();
   final _passwordKey = GlobalKey<FormFieldState>();
 
+  final _passwordController = TextEditingController();
+
+  @override
+  void initState() {
+    _passwordController.text = widget.controller.dataCollector.getPassword();
+
+    super.initState();
+  }
+
   late final _passwordTextField = SwipestTextFormField(
     widgetKey: _passwordKey,
+    controller: _passwordController,
     text: 'HASŁO',
     validator: (value) {
       if (value == null || value.isEmpty) {

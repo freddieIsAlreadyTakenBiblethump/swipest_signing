@@ -18,8 +18,18 @@ class _ThirdState extends State<Third> {
   final _formKey = GlobalKey<FormState>();
   final _usernameKey = GlobalKey<FormFieldState>();
 
+  final _usernameController = TextEditingController();
+
+  @override
+  void initState() {
+    _usernameController.text = widget.controller.dataCollector.getUsername();
+
+    super.initState();
+  }
+
   late final _usernameTextField = SwipestTextFormField(
     widgetKey: _usernameKey,
+    controller: _usernameController,
     text: 'USERNAME',
     validator: (value) {
       if (value == null || value.isEmpty) {

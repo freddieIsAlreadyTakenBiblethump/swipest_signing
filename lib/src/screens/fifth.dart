@@ -19,8 +19,18 @@ class _FifthState extends State<Fifth> {
   final _formKey = GlobalKey<FormState>();
   final _emailKey = GlobalKey<FormFieldState>();
 
+  final _emailController = TextEditingController();
+
+  @override
+  void initState() {
+    _emailController.text = widget.controller.dataCollector.getEmail();
+
+    super.initState();
+  }
+
   late final _emailTextField = SwipestTextFormField(
     widgetKey: _emailKey,
+    controller: _emailController,
     text: 'EMAIL',
     validator: (value) {
       if (value == null || value.isEmpty) {

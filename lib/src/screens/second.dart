@@ -18,8 +18,18 @@ class _SecondState extends State<Second> {
   final _formKey = GlobalKey<FormState>();
   final _birthdayKey = GlobalKey<FormFieldState>();
 
+  final _birthdayController = TextEditingController();
+
+  @override
+  void initState() {
+    _birthdayController.text = widget.controller.dataCollector.getBirthday();
+
+    super.initState();
+  }
+
   late final _birthdayTextField = SwipestTextFormField(
     widgetKey: _birthdayKey,
+    controller: _birthdayController,
     text: 'URODZINY',
     validator: (value) {
       if (value == null || value.isEmpty) {
